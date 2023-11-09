@@ -8,17 +8,20 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.cjayme.weatherapplication.presentation.theme.DarkBlue
-import com.cjayme.weatherapplication.presentation.theme.DeepBlue
-import com.cjayme.weatherapplication.presentation.ui.theme.WeatherAppTheme
+import com.cjayme.weatherapplication.ui.theme.WeatherApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,18 +42,18 @@ class MainActivity : ComponentActivity() {
             Manifest.permission.ACCESS_COARSE_LOCATION,
         ))
         setContent {
-            WeatherAppTheme {
+            WeatherApplicationTheme {
                 Box(
                     modifier = Modifier.fillMaxSize()
                 ) {
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
-                            .background(DarkBlue)
+                            .background(MaterialTheme.colorScheme.surface)
                     ) {
                         WeatherCard(
                             state = viewModel.state,
-                            backgroundColor = DeepBlue
+                            backgroundColor = MaterialTheme.colorScheme.secondaryContainer
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         WeatherForecast(state = viewModel.state)
